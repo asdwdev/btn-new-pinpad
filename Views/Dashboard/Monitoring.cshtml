@@ -1,5 +1,10 @@
 @model IEnumerable<BtnNewPinpad.Models.Pinpad>
 
+@{
+  int totalPages = (int)Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize);
+  int currentPage = ViewBag.CurrentPage;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +36,11 @@
           <input type="text" name="searchString" value="@ViewContext.HttpContext.Request.Query["searchString"]"
             placeholder="Search..."
             class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 w-48">
-          <select class="border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-400">
-            <option>5</option>
-            <option>10</option>
-            <option>25</option>
+          <select name="pageSize" onchange="this.form.submit()"
+            class="border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-400">
+            <option value="5" selected="@(ViewBag.PageSize == 5)">5</option>
+            <option value="10" selected="@(ViewBag.PageSize == 10)">10</option>
+            <option value="25" selected="@(ViewBag.PageSize == 25)">25</option>
           </select>
           <button type="submit" class="hidden">Search</button>
         </form>
@@ -95,10 +101,30 @@
 
     <!-- Pagination Buttons -->
     <div class="flex justify-end mt-4 gap-2">
-      <button class="px-3 py-1 border rounded hover:bg-gray-100">Prev</button>
-      <button class="px-3 py-1 border rounded bg-blue-500 text-white">1</button>
-      <button class="px-3 py-1 border rounded hover:bg-gray-100">2</button>
-      <button class="px-3 py-1 border rounded hover:bg-gray-100">Next</button>
+      @if (currentPage > 1)
+      {
+        <a href="@Url.Action("Monitoring", new { pageNumber = currentPage - 1, pageSize = ViewBag.PageSize, searchString = ViewBag.SearchString })"
+          class="px-3 py-1 border rounded hover:bg-gray-100">Prev</a>
+      }
+
+      @for (int i = 1; i <= totalPages; i++)
+      {
+        if (i == currentPage)
+        {
+          <span class="px-3 py-1 border rounded bg-blue-500 text-white">@i</span>
+        }
+        else
+        {
+          <a href="@Url.Action("Monitoring", new { pageNumber = i, pageSize = ViewBag.PageSize, searchString = ViewBag.SearchString })"
+            class="px-3 py-1 border rounded hover:bg-gray-100">@i</a>
+        }
+      }
+
+      @if (currentPage < totalPages)
+      {
+        <a href="@Url.Action("Monitoring", new { pageNumber = currentPage + 1, pageSize = ViewBag.PageSize, searchString = ViewBag.SearchString })"
+          class="px-3 py-1 border rounded hover:bg-gray-100">Next</a>
+      }
     </div>
   </div>
 
