@@ -18,36 +18,11 @@ public class PinpadListController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index(string searchString, int pageNumber = 1, int pageSize = 10)
+    public async Task<IActionResult> Index()
     {
-        var query = _context.Pinpads.AsQueryable();
-
-        // Search
-        if (!string.IsNullOrEmpty(searchString))
-        {
-            query = query.Where(p =>
-                // p.ParentBranch.Contains(searchString) ||
-                p.OutletCode.Contains(searchString) ||
-                p.Location.Contains(searchString) ||
-                p.SerialNumber.Contains(searchString) ||
-                p.TerminalId.Contains(searchString));
-        }
-
-        // Total data untuk pagination
-        int totalItems = await query.CountAsync();
-
-        // Pagination
-        var data = await query
-            // .OrderBy(p => p.ParentBranch)
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
+        var data = await _context.Pinpads
+            .OrderBy(p => p.ParentBranch)
             .ToListAsync();
-
-        // Kirim data ke View
-        ViewBag.CurrentPage = pageNumber;
-        ViewBag.PageSize = pageSize;
-        ViewBag.TotalItems = totalItems;
-        ViewBag.SearchString = searchString;
 
         return View(data);
     }

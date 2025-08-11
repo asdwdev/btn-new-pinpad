@@ -18,15 +18,6 @@ public class PinpadController : Controller
         _context = context;
     }
 
-    // public async Task<IActionResult> Index()
-    // {
-    //     var data = await _context.Pinpads
-    //         .OrderBy(p => p.ParentBranch)
-    //         .ToListAsync();
-
-    //     return View(data);
-    // }
-
     public async Task<IActionResult> Index(string search)
     {
         var query = _context.Pinpads.AsQueryable();

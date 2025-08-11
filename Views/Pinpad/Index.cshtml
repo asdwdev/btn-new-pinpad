@@ -135,12 +135,17 @@
       // Previous button
       let prevBtn = document.createElement("button");
       prevBtn.textContent = "Previous";
-      prevBtn.className = "px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors";
-      prevBtn.disabled = currentPage === 1;
-      prevBtn.onclick = () => { currentPage--; renderTable(); };
+      prevBtn.className = "px-3 py-1 border rounded text-sm transition-colors";
+      if (currentPage === 1) {
+        prevBtn.classList.add("bg-gray-200", "text-gray-500", "cursor-not-allowed");
+        prevBtn.disabled = true;
+      } else {
+        prevBtn.classList.add("hover:bg-gray-100");
+        prevBtn.onclick = () => { currentPage--; renderTable(); };
+      }
       paginationContainer.appendChild(prevBtn);
 
-      // page numbers
+      // Page numbers (sama seperti sebelumnya)
       for (let i = 1; i <= totalPages; i++) {
         let btn = document.createElement("button");
         btn.textContent = i;
@@ -152,9 +157,14 @@
       // Next button
       let nextBtn = document.createElement("button");
       nextBtn.textContent = "Next";
-      nextBtn.className = "px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors";
-      nextBtn.disabled = currentPage === totalPages;
-      nextBtn.onclick = () => { currentPage++; renderTable(); };
+      nextBtn.className = "px-3 py-1 border rounded text-sm transition-colors";
+      if (currentPage === totalPages) {
+        nextBtn.classList.add("bg-gray-200", "text-gray-500", "cursor-not-allowed");
+        nextBtn.disabled = true;
+      } else {
+        nextBtn.classList.add("hover:bg-gray-100");
+        nextBtn.onclick = () => { currentPage++; renderTable(); };
+      }
       paginationContainer.appendChild(nextBtn);
     }
 
@@ -167,16 +177,5 @@
     renderTable();
   });
 
-  @* document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.querySelector('input[placeholder="Search in all columns..."]');
-    const rows = document.querySelectorAll("tbody tr");
 
-    searchInput.addEventListener("input", function () {
-      const term = this.value.toLowerCase();
-      rows.forEach(row => {
-        const rowText = row.innerText.toLowerCase();
-        row.style.display = rowText.includes(term) ? "" : "none";
-      });
-    });
-  }); *@
 </script>

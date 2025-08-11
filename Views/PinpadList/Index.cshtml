@@ -270,60 +270,30 @@
               </div>
             </div>
           </th>
-          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap"
-            data-sortable="true">
-            <div class="flex items-center justify-between">
-              <span>Register</span>
-              <div class="sort-indicator">
-                <i class="fa fa-sort text-gray-400"></i>
-                <i class="fa fa-sort-up text-blue-500 hidden"></i>
-                <i class="fa fa-sort-down text-blue-500 hidden"></i>
-              </div>
-            </div>
-          </th>
         </tr>
       </thead>
       <tbody id="tableBody" class="text-sm">
-
-
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3 whitespace-nowrap">Kanwil Jakarta I</td>
-          <td class="px-4 py-3 whitespace-nowrap">00702 - KCS JAKARTA THAMRIN</td>
-          <td class="px-4 py-3 whitespace-nowrap">00728</td>
-          <td class="px-4 py-3 whitespace-nowrap">Jakarta Pusat</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 16:30:22</td>
-          <td class="px-4 py-3 font-mono whitespace-nowrap">0200640050277886</td>
-          <td class="px-4 py-3 whitespace-nowrap">TID002</td>
-          <td class="px-4 py-3 whitespace-nowrap">
-            <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Ready To
-              Use</span>
-          </td>
-          <td class="px-4 py-3 whitespace-nowrap">Admin002</td>
-          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.28.1</td>
-          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.28.254</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 16:30:22</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3 whitespace-nowrap">Kanwil Bandung</td>
-          <td class="px-4 py-3 whitespace-nowrap">00703 - KCS BANDUNG</td>
-          <td class="px-4 py-3 whitespace-nowrap">00729</td>
-          <td class="px-4 py-3 whitespace-nowrap">Bandung</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 15:45:10</td>
-          <td class="px-4 py-3 font-mono whitespace-nowrap">0200640050277887</td>
-          <td class="px-4 py-3 whitespace-nowrap">TID003</td>
-          <td class="px-4 py-3 whitespace-nowrap">
-            <span
-              class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">Maintenance</span>
-          </td>
-          <td class="px-4 py-3 whitespace-nowrap">Admin003</td>
-          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.29.1</td>
-          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.29.254</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 15:45:10</td>
-          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
-        </tr>
+        @foreach (var item in Model)
+        {
+          <tr class="hover:bg-gray-50 border-b border-gray-200">
+            <td class="px-4 py-3 whitespace-nowrap">@item.Region</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.ParentBranch</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.OutletCode</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.Location</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.RegistrationDate.ToString("dd-MM-yyyy HH:mm:ss")</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.UpdateDate.ToString("dd-MM-yyyy HH:mm:ss")</td>
+            <td class="px-4 py-3 font-mono whitespace-nowrap">@item.SerialNumber</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.TerminalId</td>
+            <td class="px-4 py-3 whitespace-nowrap">
+              <span
+                class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">@item.PinpadStatus</span>
+            </td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.CreatedBy</td>
+            <td class="px-4 py-3 font-mono whitespace-nowrap">@item.IpLow</td>
+            <td class="px-4 py-3 font-mono whitespace-nowrap">@item.IpHigh</td>
+            <td class="px-4 py-3 whitespace-nowrap">@item.LastActivity</td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
