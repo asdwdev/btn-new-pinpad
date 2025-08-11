@@ -1,3 +1,5 @@
+@model IEnumerable<BtnNewPinpad.Models.Pinpad>
+
 <div class="p-4 md:p-6">
   <div class="mb-4 text-sm px-4 sm:px-0">
     <a href="#" class="text-teal-500 font-semibold hover:text-teal-600 transition-colors">Pinpad List</a> /
@@ -22,8 +24,8 @@
     <!-- Search field -->
     <div class="flex items-center">
       <label class="text-sm text-gray-700 mr-3">Search:</label>
-      <input type="text" placeholder="Search in all columns..." 
-             class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
+      <input type="text" placeholder="Search in all columns..."
+        class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
     </div>
   </div>
 
@@ -40,126 +42,36 @@
         </tr>
       </thead>
       <tbody class="text-sm">
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00999</td>
-          <td class="px-4 py-3 font-mono">0200640050297984</td>
-          <td class="px-4 py-3">24-06-2025 15:44:24</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-              InActive
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00999</td>
-          <td class="px-4 py-3 font-mono">0200640050297887</td>
-          <td class="px-4 py-3">24-06-2025 15:39:22</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-              InActive
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00727</td>
-          <td class="px-4 py-3 font-mono">0200640050</td>
-          <td class="px-4 py-3">26-05-2025 17:16:51</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">
-              Maintenance - Tampering
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00291</td>
-          <td class="px-4 py-3 font-mono">0200640050266782</td>
-          <td class="px-4 py-3">26-05-2025 17:16:51</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
-              Not Ready To Use
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00257</td>
-          <td class="px-4 py-3 font-mono">0200640050778899</td>
-          <td class="px-4 py-3">26-05-2025 17:13:06</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
-              Not Ready To Use
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00163</td>
-          <td class="px-4 py-3 font-mono">0200640050277676</td>
-          <td class="px-4 py-3">26-05-2025 16:16:22</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
-              Not Ready To Use
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00049</td>
-          <td class="px-4 py-3 font-mono">0200640050266333</td>
-          <td class="px-4 py-3">26-05-2025 16:16:22</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
-              Not Ready To Use
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-        <tr class="hover:bg-gray-50 border-b border-gray-200">
-          <td class="px-4 py-3">00411</td>
-          <td class="px-4 py-3 font-mono">0200640050788654</td>
-          <td class="px-4 py-3">26-05-2025 16:13:51</td>
-          <td class="px-4 py-3">
-            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
-              Not Ready To Use
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
+
+        @foreach (var item in Model)
+        {
+          <tr class="hover:bg-gray-50 border-b border-gray-200">
+            <td class="px-4 py-3">@item.ParentBranch</td>
+            <td class="px-4 py-3 font-mono">@item.SerialNumber</td>
+            <td class="px-4 py-3">@item.RegistrationDate.ToString("dd-MM-yyyy")</td>
+            <td class="px-2 py-2">
+              @{
+                string statusClass = item.PinpadStatus switch
+                {
+                  "Ready To Use" => "bg-green-100 text-green-800",
+                  "Not Ready To Use" => "bg-gray-100 text-gray-800",
+                  "Maintenance - Tampering" => "bg-yellow-100 text-yellow-800",
+                  "Maintenance - Error Biometrik" => "bg-yellow-100 text-yellow-800",
+                  _ => "bg-gray-100 text-gray-800"
+                };
+              }
+              <span class="inline-block @statusClass px-3 py-1 rounded-full text-xs font-medium">
+                @item.PinpadStatus
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <button
+                class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
@@ -171,19 +83,22 @@
     </div>
     <div class="flex space-x-1">
       <!-- Previous button -->
-      <button class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+      <button
+        class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled>
         Previous
       </button>
-      
+
       <!-- Page numbers -->
-      <button class="px-3 py-1 border rounded bg-blue-500 text-white border-blue-500 hover:bg-blue-600 text-sm transition-colors">1</button>
-      
+      <button
+        class="px-3 py-1 border rounded bg-blue-500 text-white border-blue-500 hover:bg-blue-600 text-sm transition-colors">1</button>
+
       <!-- Next button -->
-      <button class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+      <button
+        class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled>
         Next
       </button>
     </div>
   </div>
 </div>
-
-

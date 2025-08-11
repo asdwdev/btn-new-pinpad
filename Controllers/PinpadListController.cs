@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BtnNewPinpad.Models;
+using BtnNewPinpad.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BtnNewPinpad.Controllers;
 
@@ -8,16 +10,47 @@ public class PinpadListController : Controller
 {
     private readonly ILogger<PinpadListController> _logger;
 
-    public PinpadListController(ILogger<PinpadListController> logger)
+    private readonly ApplicationDbContext _context;
+
+    public PinpadListController(ILogger<PinpadListController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index(string searchString, int pageNumber = 1, int pageSize = 10)
     {
-        return View();
-    }
+        var query = _context.Pinpads.AsQueryable();
 
+        // Search
+        if (!string.IsNullOrEmpty(searchString))
+        {
+            query = query.Where(p =>
+                // p.ParentBranch.Contains(searchString) ||
+                p.OutletCode.Contains(searchString) ||
+                p.Location.Contains(searchString) ||
+                p.SerialNumber.Contains(searchString) ||
+                p.TerminalId.Contains(searchString));
+        }
+
+        // Total data untuk pagination
+        int totalItems = await query.CountAsync();
+
+        // Pagination
+        var data = await query
+            // .OrderBy(p => p.ParentBranch)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        // Kirim data ke View
+        ViewBag.CurrentPage = pageNumber;
+        ViewBag.PageSize = pageSize;
+        ViewBag.TotalItems = totalItems;
+        ViewBag.SearchString = searchString;
+
+        return View(data);
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

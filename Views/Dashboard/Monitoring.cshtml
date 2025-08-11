@@ -70,10 +70,10 @@
           @foreach (var item in Model)
           {
             <tr>
-              <td class="px-4 py-2">@item.ParentBranch</td>
+              @* <td class="px-4 py-2">@item.ParentBranch</td> *@
               <td class="px-4 py-2">@item.OutletCode</td>
               <td class="px-4 py-2">@item.Location</td>
-              <td class="px-4 py-2">@item.RegistrationDate?.ToString("yyyy-MM-dd HH:mm:ss")</td>
+              @* <td class="px-4 py-2">@item.RegistrationDate?.ToString("yyyy-MM-dd HH:mm:ss")</td> *@
               <td class="px-4 py-2">@item.SerialNumber</td>
               <td class="px-4 py-2">@item.TerminalId</td>
               <td class="px-4 py-2">
@@ -93,7 +93,7 @@
               <td class="px-4 py-2">@item.CreatedBy</td>
               <td class="px-4 py-2">@item.IpLow</td>
               <td class="px-4 py-2">@item.IpHigh</td>
-              <td class="px-4 py-2">@item.LastLogin?.ToString("yyyy-MM-dd HH:mm:ss")</td>
+              @* <td class="px-4 py-2">@item.LastLogin?.ToString("yyyy-MM-dd HH:mm:ss")</td> *@
             </tr>
           }
         </tbody>

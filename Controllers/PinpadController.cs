@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BtnNewPinpad.Models;
+using BtnNewPinpad.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BtnNewPinpad.Controllers;
 
@@ -8,14 +10,21 @@ public class PinpadController : Controller
 {
     private readonly ILogger< PinpadController> _logger;
 
-    public  PinpadController(ILogger< PinpadController> logger)
+    private readonly ApplicationDbContext _context;
+
+    public PinpadController(ILogger<PinpadController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var data = await _context.Pinpads
+            .OrderBy(p => p.ParentBranch)
+            .ToListAsync();
+
+        return View(data);
     }
 
     public IActionResult Edit()

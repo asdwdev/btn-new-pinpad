@@ -1,42 +1,27 @@
-// File: Models/Pinpad.cs
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace BtnNewPinpad.Models
 {
     public class Pinpad
     {
         public int Id { get; set; }
 
-        [StringLength(20)]
-        public string ParentBranch { get; set; }
+        public required string Region { get; set; }          // Regional
+        public required string ParentBranch { get; set; }    // Cabang Induk
+        public required string OutletCode { get; set; }      // Kode Outlet
+        public required string Location { get; set; }        // Location
 
-        [StringLength(20)]
-        public string OutletCode { get; set; }
+        public required DateTime RegistrationDate { get; set; }  // Register
+        public required DateTime UpdateDate { get; set; }        // Update Date
 
-        [StringLength(200)]
-        public string Location { get; set; }
+        public required string SerialNumber { get; set; }    // Serial Number
+        public required string TerminalId { get; set; }      // TID (Terminal ID)
 
-        public DateTime? RegistrationDate { get; set; }
+        public required string PinpadStatus { get; set; }    // Status Pinpad
 
-        [StringLength(50)]
-        public string SerialNumber { get; set; }
+        public required string CreatedBy { get; set; }       // Create By
 
-        [StringLength(50)]
-        public string TerminalId { get; set; }
+        public required string IpLow { get; set; }           // IP Low
+        public required string IpHigh { get; set; }          // IP High
 
-        [StringLength(50)]
-        public string PinpadStatus { get; set; }
-
-        [StringLength(100)]
-        public string CreatedBy { get; set; }
-
-        [StringLength(50)]
-        public string IpLow { get; set; }
-
-        [StringLength(50)]
-        public string IpHigh { get; set; }
-
-        public DateTime? LastLogin { get; set; }
+        public DateTime? LastActivity { get; set; }   // Last Activity
     }
 }
