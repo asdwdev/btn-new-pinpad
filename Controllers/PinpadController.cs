@@ -4,11 +4,11 @@ using BtnNewPinpad.Models;
 
 namespace BtnNewPinpad.Controllers;
 
-public class DashboardController : Controller
+public class PinpadController : Controller
 {
-    private readonly ILogger<DashboardController> _logger;
+    private readonly ILogger< PinpadController> _logger;
 
-    public DashboardController(ILogger<DashboardController> logger)
+    public  PinpadController(ILogger< PinpadController> logger)
     {
         _logger = logger;
     }
@@ -18,20 +18,10 @@ public class DashboardController : Controller
         return View();
     }
 
-    public IActionResult  Panel()
+    public IActionResult Edit()
     {
         return View();
     }
-    
-    public IActionResult Pinpadlist()
-    {
-        return View();
-    }
-
-    public IActionResult Pinpad()
-  {
-    return View();
-  }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

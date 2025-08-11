@@ -1,0 +1,189 @@
+<div class="p-4 md:p-6">
+  <div class="mb-4 text-sm px-4 sm:px-0">
+    <a href="#" class="text-teal-500 font-semibold hover:text-teal-600 transition-colors">Pinpad List</a> /
+    <span class="text-gray-500">Inquiry</span>
+  </div>
+
+  <!-- Table Controls -->
+  <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+    <!-- Show entries dropdown -->
+    <div class="flex items-center mb-3 md:mb-0">
+      <span class="text-sm text-gray-700 mr-3">Show:</span>
+      <select class="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-400 text-sm min-w-[80px]">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="all">All</option>
+      </select>
+      <span class="text-sm text-gray-700 ml-3">entries</span>
+    </div>
+
+    <!-- Search field -->
+    <div class="flex items-center">
+      <label class="text-sm text-gray-700 mr-3">Search:</label>
+      <input type="text" placeholder="Search in all columns..." 
+             class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
+    </div>
+  </div>
+
+  <!-- Table Container -->
+  <div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden ">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-gray-700 text-sm">
+          <th class="px-4 py-3 font-semibold">Branch</th>
+          <th class="px-4 py-3 font-semibold">Serial Number</th>
+          <th class="px-4 py-3 font-semibold">Register Date</th>
+          <th class="px-4 py-3 font-semibold">Status</th>
+          <th class="px-4 py-3 font-semibold">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00999</td>
+          <td class="px-4 py-3 font-mono">0200640050297984</td>
+          <td class="px-4 py-3">24-06-2025 15:44:24</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+              InActive
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00999</td>
+          <td class="px-4 py-3 font-mono">0200640050297887</td>
+          <td class="px-4 py-3">24-06-2025 15:39:22</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+              InActive
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00727</td>
+          <td class="px-4 py-3 font-mono">0200640050</td>
+          <td class="px-4 py-3">26-05-2025 17:16:51</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">
+              Maintenance - Tampering
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00291</td>
+          <td class="px-4 py-3 font-mono">0200640050266782</td>
+          <td class="px-4 py-3">26-05-2025 17:16:51</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
+              Not Ready To Use
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00257</td>
+          <td class="px-4 py-3 font-mono">0200640050778899</td>
+          <td class="px-4 py-3">26-05-2025 17:13:06</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
+              Not Ready To Use
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00163</td>
+          <td class="px-4 py-3 font-mono">0200640050277676</td>
+          <td class="px-4 py-3">26-05-2025 16:16:22</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
+              Not Ready To Use
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00049</td>
+          <td class="px-4 py-3 font-mono">0200640050266333</td>
+          <td class="px-4 py-3">26-05-2025 16:16:22</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
+              Not Ready To Use
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3">00411</td>
+          <td class="px-4 py-3 font-mono">0200640050788654</td>
+          <td class="px-4 py-3">26-05-2025 16:13:51</td>
+          <td class="px-4 py-3">
+            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">
+              Not Ready To Use
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            <button class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex flex-col md:flex-row justify-between items-center mt-4">
+    <div class="text-sm text-gray-600 mb-2 md:mb-0">
+      Showing 1 to 8 of 8 entries
+    </div>
+    <div class="flex space-x-1">
+      <!-- Previous button -->
+      <button class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        Previous
+      </button>
+      
+      <!-- Page numbers -->
+      <button class="px-3 py-1 border rounded bg-blue-500 text-white border-blue-500 hover:bg-blue-600 text-sm transition-colors">1</button>
+      
+      <!-- Next button -->
+      <button class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+

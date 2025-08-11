@@ -1,0 +1,82 @@
+<div class="mb-4 text-sm px-4 sm:px-0">
+  <a href="#" class="text-teal-500 font-semibold hover:text-teal-600 transition-colors">Pinpad Logistik</a> /
+  <span class="text-gray-500">Edit</span>
+</div>
+
+<!-- Form -->
+<div class="bg-white p-4 sm:p-6 rounded-lg shadow max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    
+    <!-- Left Section - Pinpad Details -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Pinpad Details</h3>
+      
+      <!-- Serial Number -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">SERIAL NUMBER:</label>
+        <input type="text" value="277885" disabled class="w-full border border-gray-300 rounded-lg p-3 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all">
+      </div>
+
+      <!-- Regional -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">REGIONAL:</label>
+        <select disabled class="w-full border border-gray-300 rounded-lg p-3 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all">
+          <option>Kanwil Jakarta I</option>
+        </select>
+      </div>
+
+      <!-- Cabang Induk -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">CABANG INDUK:</label>
+        <select disabled class="w-full border border-gray-300 rounded-lg p-3 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all">
+          <option>00701 - KCS JAKARTA HARMONI</option>
+        </select>
+      </div>
+
+      <!-- Outlet -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">OUTLET:</label>
+        <select disabled class="w-full border border-gray-300 rounded-lg p-3 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all">
+          <option>00727 - KCPS Jakarta Tanah Abang</option>
+        </select>
+      </div>
+
+      <!-- IP Low and IP High side by side -->
+      <div class="grid grid-cols-2 gap-4">
+        <!-- IP Low -->
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2">IP LOW:</label>
+          <input type="text" value="11.7.27.1" disabled class="w-full border border-gray-300 rounded-lg p-3 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all">
+        </div>
+
+        <!-- IP High -->
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2">IP HIGH:</label>
+          <input type="text" value="11.7.27.254" disabled class="w-full border border-gray-300 rounded-lg p-3 bg-gray-100 cursor-not-allowed focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all">
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section - Damage/Malfunction Information -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Damage/Malfunction Information</h3>
+      
+      <!-- Kerusakan -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">KERUSAKAN:</label>
+        <select class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+          <option>--Select Kerusakan Pinpad--</option>
+          <option>BM - Error Biometrik</option>
+          <option>M1 - Tampering</option>
+          <option>M2 - Kamera Tidak Berfungsi</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="mt-8 flex justify-end gap-3">
+    <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">Cancel</button>
+    <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">Update</button>
+  </div>
+</div>

@@ -1,0 +1,720 @@
+<div class="mb-4 text-sm px-4 sm:px-0">
+  <a href="#" class="text-teal-500 font-semibold hover:text-teal-600 transition-colors">Pinpad List</a> /
+  <span class="text-gray-500">Inquiry</span>
+</div>
+
+<!-- Filter Form -->
+<div class="bg-white p-6 rounded-lg shadow mb-6">
+  
+  
+  <!-- Two Column Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    
+    <!-- Left Column -->
+    <div class="space-y-6">
+      <!-- Regional -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Regional:</label>
+        <select class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+          <option>--Select Regional--</option>
+          <option>Kanwil Jakarta I</option>
+          <option>Kanwil Jakarta II</option>
+          <option>Kanwil Bandung</option>
+          <option>Kanwil Surabaya</option>
+        </select>
+      </div>
+
+      <!-- Cabang Induk -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Cabang Induk:</label>
+        <select class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+          <option>--Select Cabang Induk--</option>
+          <option>00701 - KCS JAKARTA HARMONI</option>
+          <option>00702 - KCS JAKARTA THAMRIN</option>
+          <option>00703 - KCS BANDUNG</option>
+        </select>
+      </div>
+
+      <!-- Outlet -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Outlet:</label>
+        <select class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+          <option>--Select Outlet--</option>
+          <option>00727 - KCPS Jakarta Tanah Abang</option>
+          <option>00728 - KCPS Jakarta Senen</option>
+          <option>00729 - KCPS Bandung</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-6">
+      <!-- Serial Number -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Serial Number:</label>
+        <input type="text" placeholder="Please enter your Serial Number"
+          class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+      </div>
+
+      <!-- Username -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Username:</label>
+        <input type="text" placeholder="Please enter your Username" 
+          class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Status:</label>
+        <select class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+          <option>--Select Status Pinpad--</option>
+          <option>Ready To Use</option>
+          <option>Not Ready To Use</option>
+          <option>Maintenance</option>
+          <option>In Use</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Button - Right Aligned -->
+  <div class="mt-8 flex justify-end">
+    <button class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
+      <i class="fa fa-search mr-2"></i>Search
+    </button>
+  </div>
+</div>
+
+<!-- Table Container -->
+<div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
+  
+  
+  <!-- Custom Search and Length Menu -->
+  <div class="px-4 sm:px-6 py-6 border-b border-gray-200">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <!-- Length Menu -->
+      <div class="flex items-center gap-2">
+        <label class="text-sm font-medium text-gray-700">Show:</label>
+        <select id="pageSize" class="border border-gray-300 rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <span class="text-sm text-gray-600">entries</span>
+      </div>
+      
+      <!-- Search Box -->
+      <div class="flex items-center gap-2">
+        <label class="text-sm font-medium text-gray-700">Search:</label>
+        <input type="text" id="searchInput" placeholder="Search in all columns..." 
+          class="border border-gray-300 rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[250px]">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Table Responsive Wrapper -->
+  <div class="table-responsive">
+    <table id="pinpadListTable" class="w-full text-left border-collapse min-w-full">
+      <thead>
+        <tr class="bg-gray-100 text-gray-700 text-sm">
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Regional</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Cabang Induk</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Kode Outlet</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Location</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Register</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Update Date</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Serial Number</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>TID</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Status Pinpad</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Create By</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>IP Low</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>IP High</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Last Activity</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+          <th class="px-4 py-3 font-semibold cursor-pointer hover:bg-gray-200 transition-colors whitespace-nowrap" data-sortable="true">
+            <div class="flex items-center justify-between">
+              <span>Register</span>
+              <div class="sort-indicator">
+                <i class="fa fa-sort text-gray-400"></i>
+                <i class="fa fa-sort-up text-blue-500 hidden"></i>
+                <i class="fa fa-sort-down text-blue-500 hidden"></i>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="tableBody" class="text-sm">
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3 whitespace-nowrap">Kanwil Jakarta I</td>
+          <td class="px-4 py-3 whitespace-nowrap">00701 - KCS JAKARTA HARMONI</td>
+          <td class="px-4 py-3 whitespace-nowrap">00727</td>
+          <td class="px-4 py-3 whitespace-nowrap">Jakarta Pusat</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 17:16:51</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">0200640050277885</td>
+          <td class="px-4 py-3 whitespace-nowrap">TID001</td>
+          <td class="px-4 py-3 whitespace-nowrap">
+            <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">Not Ready To Use</span>
+          </td>
+          <td class="px-4 py-3 whitespace-nowrap">Admin001</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.27.1</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.27.254</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 17:16:51</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3 whitespace-nowrap">Kanwil Jakarta I</td>
+          <td class="px-4 py-3 whitespace-nowrap">00702 - KCS JAKARTA THAMRIN</td>
+          <td class="px-4 py-3 whitespace-nowrap">00728</td>
+          <td class="px-4 py-3 whitespace-nowrap">Jakarta Pusat</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 16:30:22</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">0200640050277886</td>
+          <td class="px-4 py-3 whitespace-nowrap">TID002</td>
+          <td class="px-4 py-3 whitespace-nowrap">
+            <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Ready To Use</span>
+          </td>
+          <td class="px-4 py-3 whitespace-nowrap">Admin002</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.28.1</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.28.254</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 16:30:22</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
+        </tr>
+        <tr class="hover:bg-gray-50 border-b border-gray-200">
+          <td class="px-4 py-3 whitespace-nowrap">Kanwil Bandung</td>
+          <td class="px-4 py-3 whitespace-nowrap">00703 - KCS BANDUNG</td>
+          <td class="px-4 py-3 whitespace-nowrap">00729</td>
+          <td class="px-4 py-3 whitespace-nowrap">Bandung</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 15:45:10</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">0200640050277887</td>
+          <td class="px-4 py-3 whitespace-nowrap">TID003</td>
+          <td class="px-4 py-3 whitespace-nowrap">
+            <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">Maintenance</span>
+          </td>
+          <td class="px-4 py-3 whitespace-nowrap">Admin003</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.29.1</td>
+          <td class="px-4 py-3 font-mono whitespace-nowrap">11.7.29.254</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025 15:45:10</td>
+          <td class="px-4 py-3 whitespace-nowrap">26-05-2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Custom Pagination and Info -->
+  <div class="px-4 sm:px-6 py-4 border-t border-gray-200">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <!-- Info -->
+      <div id="tableInfo" class="text-sm text-gray-600">
+        Showing 1 to 3 of 3 entries
+      </div>
+      
+      <!-- Pagination -->
+      <div id="pagination" class="flex items-center gap-1">
+        <button id="prevBtn" class="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Previous
+        </button>
+        <button class="page-btn current px-3 py-2 text-sm border border-blue-500 bg-blue-500 text-white rounded">1</button>
+        <button id="nextBtn" class="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+<!-- jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+<script>
+// Custom Table Management
+class CustomTable {
+    constructor() {
+        this.allData = [];
+        this.filteredData = [];
+        this.currentPage = 1;
+        this.pageSize = 10;
+        this.sortColumn = 4; // Register Date
+        this.sortDirection = 'desc';
+        
+        this.init();
+    }
+    
+    init() {
+        this.loadData();
+        this.setupEventListeners();
+        this.render();
+    }
+    
+    loadData() {
+        // Get all table rows
+        const rows = document.querySelectorAll('#tableBody tr');
+        this.allData = Array.from(rows).map(row => {
+            const cells = row.querySelectorAll('td');
+            return {
+                regional: cells[0].textContent.trim(),
+                cabangInduk: cells[1].textContent.trim(),
+                kodeOutlet: cells[2].textContent.trim(),
+                location: cells[3].textContent.trim(),
+                register: cells[4].textContent.trim(),
+                updateDate: cells[5].textContent.trim(),
+                serialNumber: cells[6].textContent.trim(),
+                tid: cells[7].textContent.trim(),
+                statusPinpad: cells[8].textContent.trim(),
+                createBy: cells[9].textContent.trim(),
+                ipLow: cells[10].textContent.trim(),
+                ipHigh: cells[11].textContent.trim(),
+                lastActivity: cells[12].textContent.trim(),
+                register2: cells[13].textContent.trim()
+            };
+        });
+        this.filteredData = [...this.allData];
+    }
+    
+    setupEventListeners() {
+        // Search input
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            this.search(e.target.value);
+        });
+        
+        // Page size selector
+        document.getElementById('pageSize').addEventListener('change', (e) => {
+            this.pageSize = parseInt(e.target.value);
+            this.currentPage = 1;
+            this.render();
+        });
+        
+        // Previous button
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+                this.render();
+            }
+        });
+        
+        // Next button
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            const maxPage = Math.ceil(this.filteredData.length / this.pageSize);
+            if (this.currentPage < maxPage) {
+                this.currentPage++;
+                this.render();
+            }
+        });
+        
+        // Sort headers
+        document.querySelectorAll('th[data-sortable="true"]').forEach((th, index) => {
+            th.addEventListener('click', () => {
+                this.sort(index);
+            });
+        });
+    }
+    
+    search(query) {
+        if (!query.trim()) {
+            this.filteredData = [...this.allData];
+        } else {
+            const lowerQuery = query.toLowerCase();
+            this.filteredData = this.allData.filter(row => 
+                Object.values(row).some(value => 
+                    value.toLowerCase().includes(lowerQuery)
+                )
+            );
+        }
+        this.currentPage = 1;
+        this.render();
+    }
+    
+    sort(columnIndex) {
+        if (this.sortColumn === columnIndex) {
+            this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            this.sortColumn = columnIndex;
+            this.sortDirection = 'asc';
+        }
+        
+        this.filteredData.sort((a, b) => {
+            let aVal, bVal;
+            
+            switch(columnIndex) {
+                case 0: // Regional
+                    aVal = a.regional;
+                    bVal = b.regional;
+                    break;
+                case 1: // Cabang Induk
+                    aVal = a.cabangInduk;
+                    bVal = b.cabangInduk;
+                    break;
+                case 2: // Kode Outlet
+                    aVal = a.kodeOutlet;
+                    bVal = b.kodeOutlet;
+                    break;
+                case 3: // Location
+                    aVal = a.location;
+                    bVal = b.location;
+                    break;
+                case 4: // Register
+                    aVal = new Date(a.register.split('-').reverse().join('-'));
+                    bVal = new Date(b.register.split('-').reverse().join('-'));
+                    break;
+                case 5: // Update Date
+                    aVal = new Date(a.updateDate.split(' ')[0].split('-').reverse().join('-'));
+                    bVal = new Date(b.updateDate.split(' ')[0].split('-').reverse().join('-'));
+                    break;
+                case 6: // Serial Number
+                    aVal = a.serialNumber;
+                    bVal = b.serialNumber;
+                    break;
+                case 7: // TID
+                    aVal = a.tid;
+                    bVal = b.tid;
+                    break;
+                case 8: // Status Pinpad
+                    aVal = a.statusPinpad;
+                    bVal = b.statusPinpad;
+                    break;
+                case 9: // Create By
+                    aVal = a.createBy;
+                    bVal = b.createBy;
+                    break;
+                case 10: // IP Low
+                    aVal = a.ipLow;
+                    bVal = b.ipLow;
+                    break;
+                case 11: // IP High
+                    aVal = a.ipHigh;
+                    bVal = b.ipHigh;
+                    break;
+                case 12: // Last Activity
+                    aVal = new Date(a.lastActivity.split(' ')[0].split('-').reverse().join('-'));
+                    bVal = new Date(b.lastActivity.split(' ')[0].split('-').reverse().join('-'));
+                    break;
+                case 13: // Register 2
+                    aVal = new Date(a.register2.split('-').reverse().join('-'));
+                    bVal = new Date(b.register2.split('-').reverse().join('-'));
+                    break;
+                default:
+                    aVal = a.regional;
+                    bVal = b.regional;
+            }
+            
+            if (aVal < bVal) return this.sortDirection === 'asc' ? -1 : 1;
+            if (aVal > bVal) return this.sortDirection === 'asc' ? 1 : -1;
+            return 0;
+        });
+        
+        this.updateSortIndicators();
+        this.render();
+    }
+    
+    updateSortIndicators() {
+        // Reset all indicators
+        document.querySelectorAll('.sort-indicator .fa-sort').forEach(icon => icon.classList.remove('hidden'));
+        document.querySelectorAll('.sort-indicator .fa-sort-up').forEach(icon => icon.classList.add('hidden'));
+        document.querySelectorAll('.sort-indicator .fa-sort-down').forEach(icon => icon.classList.add('hidden'));
+        
+        // Show current sort
+        const currentTh = document.querySelectorAll('th[data-sortable="true"]')[this.sortColumn];
+        if (currentTh) {
+            const sortIcon = currentTh.querySelector('.fa-sort');
+            const upIcon = currentTh.querySelector('.fa-sort-up');
+            const downIcon = currentTh.querySelector('.fa-sort-down');
+            
+            sortIcon.classList.add('hidden');
+            if (this.sortDirection === 'asc') {
+                upIcon.classList.remove('hidden');
+            } else {
+                downIcon.classList.remove('hidden');
+            }
+        }
+    }
+    
+    render() {
+        const startIndex = (this.currentPage - 1) * this.pageSize;
+        const endIndex = startIndex + this.pageSize;
+        const pageData = this.filteredData.slice(startIndex, endIndex);
+        
+        // Render table body
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = pageData.map(row => `
+            <tr class="hover:bg-gray-50 border-b border-gray-200">
+                <td class="px-4 py-3 whitespace-nowrap">${row.regional}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.cabangInduk}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.kodeOutlet}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.location}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.register}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.updateDate}</td>
+                <td class="px-4 py-3 font-mono whitespace-nowrap">${row.serialNumber}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.tid}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.statusPinpad}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.createBy}</td>
+                <td class="px-4 py-3 font-mono whitespace-nowrap">${row.ipLow}</td>
+                <td class="px-4 py-3 font-mono whitespace-nowrap">${row.ipHigh}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.lastActivity}</td>
+                <td class="px-4 py-3 whitespace-nowrap">${row.register2}</td>
+            </tr>
+        `).join('');
+        
+        // Update info
+        const totalEntries = this.filteredData.length;
+        const startEntry = totalEntries > 0 ? startIndex + 1 : 0;
+        const endEntry = Math.min(endIndex, totalEntries);
+        
+        document.getElementById('tableInfo').textContent = 
+            `Showing ${startEntry} to ${endEntry} of ${totalEntries} entries`;
+        
+        // Update pagination
+        this.updatePagination();
+        
+        // Update button states
+        document.getElementById('prevBtn').disabled = this.currentPage === 1;
+        document.getElementById('nextBtn').disabled = this.currentPage >= Math.ceil(totalEntries / this.pageSize);
+    }
+    
+    updatePagination() {
+        const totalPages = Math.ceil(this.filteredData.length / this.pageSize);
+        const pagination = document.getElementById('pagination');
+        
+        // Clear existing page buttons
+        const pageButtons = pagination.querySelectorAll('.page-btn');
+        pageButtons.forEach(btn => btn.remove());
+        
+        // Add page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            const pageBtn = document.createElement('button');
+            pageBtn.className = `page-btn px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-100 transition-colors ${i === this.currentPage ? 'current border-blue-500 bg-blue-500 text-white' : ''}`;
+            pageBtn.textContent = i;
+            pageBtn.addEventListener('click', () => {
+                this.currentPage = i;
+                this.render();
+            });
+            
+            // Insert before next button
+            const nextBtn = document.getElementById('nextBtn');
+            pagination.insertBefore(pageBtn, nextBtn);
+        }
+    }
+}
+
+// Initialize table when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new CustomTable();
+});
+</script>
+
+<style>
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 1rem;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    width: 200px;
+}
+
+.dataTables_wrapper .dataTables_info {
+    padding-top: 1rem;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 1rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #374151;
+    margin: 0 2px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+    transform: translateY(-1px);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+    font-weight: 600;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+    font-weight: 600;
+}
+
+/* Sort indicators styling */
+.sort-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20px;
+}
+
+.sort-indicator i {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.sort-indicator .fa-sort-up {
+    margin-bottom: -2px;
+}
+
+.sort-indicator .fa-sort-down {
+    margin-top: -2px;
+}
+
+th[data-sortable="true"]:hover {
+    background-color: #e5e7eb;
+}
+
+th[data-sortable="true"]:active {
+    background-color: #d1d5db;
+}
+</style>
+

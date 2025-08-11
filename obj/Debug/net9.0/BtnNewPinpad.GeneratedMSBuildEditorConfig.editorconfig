@@ -24,12 +24,8 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Dashboard/Monitoring.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE1vbml0b3JpbmcuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Dashboard/Pinpad.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBpbnBhZC5jc2h0bWw=
+[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Dashboard/Panel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhbmVsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Home/Index.cshtml]
@@ -40,8 +36,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Login/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5caW5kZXguY3NodG1s
+[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/PinpadList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlucGFkTGlzdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Pinpad/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlucGFkXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Pinpad/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlucGFkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Farhanfahrezyy/Documents/Projects/btn-new-pinpad/Views/Shared/Error.cshtml]

@@ -22,7 +22,6 @@ C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\rjsmc
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\scopedcss\bundle\BtnNewPinpad.styles.css
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\scopedcss\projectbundle\BtnNewPinpad.bundle.scp.css
-C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\compressed\u3rwnjvn2v-b9sayid5wm.gz
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\compressed\rramq84o0u-61n19gt1b8.gz
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\compressed\0dw6ojojn8-xtxxf3hu2r.gz
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\compressed\dlennt8ojd-t1cqhe9u97.gz
@@ -95,3 +94,4 @@ C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\refin
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\BtnNewPinpad.pdb
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\BtnNewPinpad.genruntimeconfig.cache
 C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\ref\BtnNewPinpad.dll
+C:\Users\Farhanfahrezyy\Documents\Projects\btn-new-pinpad\obj\Debug\net9.0\compressed\u3rwnjvn2v-9ys5kxxhab.gz
