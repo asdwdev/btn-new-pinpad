@@ -1,13 +1,15 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using BtnNewPinpad.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BtnNewPinpad.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }
