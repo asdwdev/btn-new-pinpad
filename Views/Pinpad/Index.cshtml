@@ -22,11 +22,11 @@
     </div>
 
     <!-- Search field -->
-    <div class="flex items-center">
+    <form method="get" class="flex items-center">
       <label class="text-sm text-gray-700 mr-3">Search:</label>
-      <input type="text" placeholder="Search in all columns..."
+      <input type="text" name="search" value="@ViewData["Search"]" placeholder="Search in all columns..."
         class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
-    </div>
+    </form>
   </div>
 
   <!-- Table Container -->
@@ -102,3 +102,81 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.querySelector("tbody");
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+    const dropdown = document.querySelector("select");
+    const paginationContainer = document.querySelector(".flex.space-x-1");
+    const showingInfo = document.querySelector(".text-sm.text-gray-600");
+
+    let pageSize = parseInt(dropdown.value);
+    let currentPage = 1;
+
+    function renderTable() {
+      // hitung total halaman
+      let totalPages = pageSize === "all" ? 1 : Math.ceil(rows.length / pageSize);
+
+      // sembunyikan semua
+      rows.forEach(row => row.style.display = "none");
+
+      // tampilkan baris sesuai halaman
+      let start = (currentPage - 1) * pageSize;
+      let end = pageSize === "all" ? rows.length : start + pageSize;
+      rows.slice(start, end).forEach(row => row.style.display = "");
+
+      // update text "showing X to Y"
+      showingInfo.textContent = `Showing ${start + 1} to ${Math.min(end, rows.length)} of ${rows.length} entries`;
+
+      // render pagination number
+      paginationContainer.innerHTML = "";
+
+      // Previous button
+      let prevBtn = document.createElement("button");
+      prevBtn.textContent = "Previous";
+      prevBtn.className = "px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors";
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.onclick = () => { currentPage--; renderTable(); };
+      paginationContainer.appendChild(prevBtn);
+
+      // page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        let btn = document.createElement("button");
+        btn.textContent = i;
+        btn.className = `px-3 py-1 border rounded text-sm transition-colors ${i === currentPage ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600' : 'hover:bg-gray-100'}`;
+        btn.onclick = () => { currentPage = i; renderTable(); };
+        paginationContainer.appendChild(btn);
+      }
+
+      // Next button
+      let nextBtn = document.createElement("button");
+      nextBtn.textContent = "Next";
+      nextBtn.className = "px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors";
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.onclick = () => { currentPage++; renderTable(); };
+      paginationContainer.appendChild(nextBtn);
+    }
+
+    dropdown.addEventListener("change", function () {
+      pageSize = this.value === "all" ? "all" : parseInt(this.value);
+      currentPage = 1;
+      renderTable();
+    });
+
+    renderTable();
+  });
+
+  @* document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector('input[placeholder="Search in all columns..."]');
+    const rows = document.querySelectorAll("tbody tr");
+
+    searchInput.addEventListener("input", function () {
+      const term = this.value.toLowerCase();
+      rows.forEach(row => {
+        const rowText = row.innerText.toLowerCase();
+        row.style.display = rowText.includes(term) ? "" : "none";
+      });
+    });
+  }); *@
+</script>

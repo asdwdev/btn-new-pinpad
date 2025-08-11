@@ -18,12 +18,34 @@ public class PinpadController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    // public async Task<IActionResult> Index()
+    // {
+    //     var data = await _context.Pinpads
+    //         .OrderBy(p => p.ParentBranch)
+    //         .ToListAsync();
+
+    //     return View(data);
+    // }
+
+    public async Task<IActionResult> Index(string search)
     {
-        var data = await _context.Pinpads
+        var query = _context.Pinpads.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            search = search.ToLower();
+            query = query.Where(p =>
+                p.ParentBranch.ToLower().Contains(search) ||
+                p.SerialNumber.ToString().Contains(search) ||
+                p.PinpadStatus.ToLower().Contains(search) ||
+                p.Location.ToLower().Contains(search));
+        }
+
+        var data = await query
             .OrderBy(p => p.ParentBranch)
             .ToListAsync();
 
+        ViewData["Search"] = search;
         return View(data);
     }
 
