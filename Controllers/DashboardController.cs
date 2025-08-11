@@ -28,6 +28,15 @@ namespace BtnNewPinpad.Controllers
         {
             return View();
         }
+        public IActionResult  Panel()
+        {
+            return View();
+        }
+        
+        public IActionResult Pinpadlist()
+        {
+            return View();
+        }
 
         public IActionResult Pinpad()
         {

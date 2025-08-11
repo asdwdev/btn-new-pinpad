@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE1vbml0b3JpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/Dashboard/Panel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBhbmVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/Dashboard/Pinpad.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFBpbnBhZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,8 +56,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/Login/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5caW5kZXguY3NodG1s
+[C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/PinpadList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlucGFkTGlzdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/Pinpad/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlucGFkXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/Pinpad/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlucGFkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Arya/Desktop/dotnet-projects/BtnNewPinpad/Views/Shared/Error.cshtml]
