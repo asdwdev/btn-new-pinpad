@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BtnNewPinpad")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51c60cdc21263ed6728c65c145697063c75739ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ce4a8fc0ccb97ea263ecd22fbb5102a3f394b4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("BtnNewPinpad")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BtnNewPinpad")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
