@@ -22,14 +22,42 @@ namespace BtnNewPinpad.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Monitoring()
+        // public async Task<IActionResult> Monitoring()
+        // {
+        //     var data = await _context.Pinpads
+        //         .OrderBy(p => p.ParentBranch)
+        //         .ToListAsync();
+
+        //     return View(data);
+        // }
+
+        public async Task<IActionResult> Monitoring(string searchString)
         {
-            var data = await _context.Pinpads
+            var pinpads = from p in _context.Pinpads
+                        select p;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                pinpads = pinpads.Where(p =>
+                    p.ParentBranch.Contains(searchString) ||
+                    p.OutletCode.Contains(searchString) ||
+                    p.Location.Contains(searchString) ||
+                    p.SerialNumber.Contains(searchString) ||
+                    p.TerminalId.Contains(searchString) ||
+                    p.PinpadStatus.Contains(searchString) ||
+                    p.CreatedBy.Contains(searchString) ||
+                    p.IpLow.Contains(searchString) ||
+                    p.IpHigh.Contains(searchString)
+                );
+            }
+
+            var data = await pinpads
                 .OrderBy(p => p.ParentBranch)
                 .ToListAsync();
 
             return View(data);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
