@@ -115,9 +115,15 @@
 
       <!-- Search Box -->
       <div class="flex items-center gap-2">
-        <label class="text-sm font-medium text-gray-700">Search:</label>
+        @* <label class="text-sm font-medium text-gray-700">Search:</label>
         <input type="text" id="searchInput" placeholder="Search in all columns..."
           class="border border-gray-300 rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[250px]">
+           *@
+        <form method="get" class="flex items-center">
+          <label class="text-sm text-gray-700 mr-3">Search:</label>
+          <input type="text" name="search" value="@ViewData["Search"]" placeholder="Search in all columns..."
+            class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
+        </form>
       </div>
     </div>
   </div>
