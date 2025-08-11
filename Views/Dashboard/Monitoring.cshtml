@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinpad Monitoring</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <div class="p-6">
+    <!-- Title -->
+    <h1 class="text-2xl font-bold mb-4">📊 Pinpad Monitoring</h1>
+
+    <!-- Export Buttons + Search & Pagination -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-3">
+      <!-- Export Buttons -->
+      <div class="flex gap-2">
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">PDF</button>
+        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Excel</button>
+        <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">CSV</button>
+      </div>
+
+      <!-- Search + Pagination Size -->
+      <div class="flex items-center gap-3">
+        <input type="text" placeholder="Search..." 
+          class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 w-48">
+        <select class="border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-400">
+          <option>5</option>
+          <option>10</option>
+          <option>25</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700">
+            <th class="px-4 py-2">Cabang Induk</th>
+            <th class="px-4 py-2">Kode Outlet</th>
+            <th class="px-4 py-2">Location</th>
+            <th class="px-4 py-2">Tanggal Register</th>
+            <th class="px-4 py-2">Serial Number</th>
+            <th class="px-4 py-2">TID</th>
+            <th class="px-4 py-2">Status Pinpad</th>
+            <th class="px-4 py-2">Create By</th>
+            <th class="px-4 py-2">IP Low</th>
+            <th class="px-4 py-2">IP High</th>
+            <th class="px-4 py-2">Last Login</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-4 py-2">00999</td>
+            <td class="px-4 py-2">99998</td>
+            <td class="px-4 py-2">Cabang Testing ITPD</td>
+            <td class="px-4 py-2">2025-05-19 10:38:21</td>
+            <td class="px-4 py-2">298717</td>
+            <td class="px-4 py-2">99998012</td>
+            <td class="px-4 py-2">
+              <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">Inactive</span>
+            </td>
+            <td class="px-4 py-2">ITPD-ICP.Julio</td>
+            <td class="px-4 py-2">0.0.0.0</td>
+            <td class="px-4 py-2">255.255.255.255</td>
+            <td class="px-4 py-2">2025-07-03 10:45:56</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">00162</td>
+            <td class="px-4 py-2">00291</td>
+            <td class="px-4 py-2">KCP Graha Raya</td>
+            <td class="px-4 py-2">2025-05-21 16:15:01</td>
+            <td class="px-4 py-2">266782</td>
+            <td class="px-4 py-2">00291001</td>
+            <td class="px-4 py-2">
+              <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Not Ready To Use</span>
+            </td>
+            <td class="px-4 py-2">ITPD-ICP.Imwan</td>
+            <td class="px-4 py-2">10.29.1.1</td>
+            <td class="px-4 py-2">10.29.1.254</td>
+            <td class="px-4 py-2">2025-06-24 15:46:40</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Buttons -->
+    <div class="flex justify-end mt-4 gap-2">
+      <button class="px-3 py-1 border rounded hover:bg-gray-100">Prev</button>
+      <button class="px-3 py-1 border rounded bg-blue-500 text-white">1</button>
+      <button class="px-3 py-1 border rounded hover:bg-gray-100">2</button>
+      <button class="px-3 py-1 border rounded hover:bg-gray-100">Next</button>
+    </div>
+  </div>
+
+</body>
+</html>

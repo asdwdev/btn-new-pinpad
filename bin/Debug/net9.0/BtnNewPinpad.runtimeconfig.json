@@ -13,7 +13,10 @@
     ],
     "configProperties": {
       "System.GC.Server": true,
+<<<<<<< HEAD
       "System.Reflection.NullabilityInfoContext.IsSupported": true,
+=======
+>>>>>>> origin/dev-farhan
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false
     }
   }
