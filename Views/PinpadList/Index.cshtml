@@ -91,7 +91,7 @@
 
 
 <!-- Table Container -->
-<div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
+<div id="tableSection" class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
 
 
   <!-- Custom Search and Length Menu -->
@@ -275,9 +275,19 @@
             <td class="px-4 py-3 whitespace-nowrap">@item.UpdateDate.ToString("dd-MM-yyyy HH:mm:ss")</td>
             <td class="px-4 py-3 font-mono whitespace-nowrap">@item.SerialNumber</td>
             <td class="px-4 py-3 whitespace-nowrap">@item.TerminalId</td>
-            <td class="px-4 py-3 whitespace-nowrap">
-              <span
-                class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">@item.PinpadStatus</span>
+            <td class="px-2 py-2 whitespace-nowrap">
+              @{
+                string statusClass = item.PinpadStatus switch
+                {
+                  "Ready To Use" => "bg-green-100 text-green-800",
+                  "Not Ready To Use" => "bg-gray-100 text-gray-800",
+                  _ when item.PinpadStatus.StartsWith("Maintenance") => "bg-yellow-100 text-yellow-800",
+                  _ => "bg-gray-100 text-gray-800"
+                };
+              }
+              <span class="inline-block @statusClass px-3 py-1 rounded-full text-xs font-medium">
+                @item.PinpadStatus
+              </span>
             </td>
             <td class="px-4 py-3 whitespace-nowrap">@item.CreatedBy</td>
             <td class="px-4 py-3 font-mono whitespace-nowrap">@item.IpLow</td>
