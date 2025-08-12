@@ -18,42 +18,87 @@ public class PinpadListController : Controller
         _context = context;
     }
 
-    public IActionResult Index(string search)
+    public async Task<IActionResult> Index(
+        string regional,
+        string parentBranch,
+        string outlet,
+        string serialNumber,
+        string createdBy,
+        string status
+    )
     {
         var query = _context.Pinpads.AsQueryable();
 
-        if (!string.IsNullOrWhiteSpace(search))
-        {
-            search = search.ToLower();
+        // Filter berdasarkan masing-masing field
+        if (!string.IsNullOrWhiteSpace(regional))
+            query = query.Where(p => p.Region == regional);
 
-            query = query
-                .AsEnumerable()
-                .Where(p =>
-                    (p.Region != null && p.Region.ToLower().Contains(search)) ||
-                    (p.ParentBranch != null && p.ParentBranch.ToLower().Contains(search)) ||
-                    (p.OutletCode != null && p.OutletCode.ToLower().Contains(search)) ||
-                    (p.Location != null && p.Location.ToLower().Contains(search)) ||
-                    p.RegistrationDate.ToString("dd-MM-yyyy HH:mm:ss").Contains(search) ||
-                    p.UpdateDate.ToString("dd-MM-yyyy HH:mm:ss").Contains(search) ||
-                    p.SerialNumber.ToString().Contains(search) ||
-                    (p.TerminalId != null && p.TerminalId.ToLower().Contains(search)) ||
-                    (p.PinpadStatus != null && p.PinpadStatus.ToLower().Contains(search)) ||
-                    (p.CreatedBy != null && p.CreatedBy.ToLower().Contains(search)) ||
-                    (p.IpLow != null && p.IpLow.Contains(search)) ||
-                    (p.IpHigh != null && p.IpHigh.Contains(search)) ||
-                    (p.LastActivity.HasValue &&
-                    p.LastActivity.Value.ToString("dd-MM-yyyy HH:mm:ss").ToLower().Contains(search))
-                )
-                .AsQueryable();
-        }
+        if (!string.IsNullOrWhiteSpace(parentBranch))
+            query = query.Where(p => p.ParentBranch == parentBranch);
 
-        var data = query
+        if (!string.IsNullOrWhiteSpace(outlet))
+            query = query.Where(p => p.OutletCode == outlet);
+
+        if (!string.IsNullOrWhiteSpace(serialNumber))
+            query = query.Where(p => p.SerialNumber.Contains(serialNumber));
+
+        if (!string.IsNullOrWhiteSpace(createdBy))
+            query = query.Where(p => p.CreatedBy.Contains(createdBy));
+
+        if (!string.IsNullOrWhiteSpace(status))
+            query = query.Where(p => p.PinpadStatus == status);
+
+        var data = await query
             .OrderBy(p => p.ParentBranch)
-            .ToList();
+            .ToListAsync();
 
-        ViewData["Search"] = search;
+        // Dropdowns
+        var regionals = await _context.Pinpads
+            .Where(p => !string.IsNullOrEmpty(p.Region))
+            .Select(p => p.Region)
+            .Distinct()
+            .OrderBy(r => r)
+            .ToListAsync();
+
+        var parentBranches = await _context.Pinpads
+            .Where(p => !string.IsNullOrEmpty(p.ParentBranch))
+            .Select(p => p.ParentBranch)
+            .Distinct()
+            .OrderBy(p => p)
+            .ToListAsync();
+
+        var outlets = await _context.Pinpads
+            .Where(p => !string.IsNullOrEmpty(p.OutletCode))
+            .Select(p => p.OutletCode)
+            .Distinct()
+            .OrderBy(p => p)
+            .ToListAsync();
+
+        var statuses = await _context.Pinpads
+            .Where(p => !string.IsNullOrEmpty(p.PinpadStatus))
+            .Select(p => p.PinpadStatus)
+            .Distinct()
+            .OrderBy(p => p)
+            .ToListAsync();
+
+        ViewData["Regionals"] = regionals;
+        ViewData["ParentBranches"] = parentBranches;
+        ViewData["Outlets"] = outlets;
+        ViewData["Status"] = statuses;
+
+        // Simpan filter yang dipilih biar formnya tetep keisi
+        ViewData["SelectedRegional"] = regional;
+        ViewData["SelectedParentBranch"] = parentBranch;
+        ViewData["SelectedOutlet"] = outlet;
+        ViewData["SelectedSerialNumber"] = serialNumber;
+        ViewData["SelectedCreatedBy"] = createdBy;
+        ViewData["SelectedStatus"] = status;
+
         return View(data);
     }
+
+
+
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

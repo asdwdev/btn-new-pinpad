@@ -5,49 +5,46 @@
   <span class="text-gray-500">Inquiry</span>
 </div>
 
-<!-- Filter Form -->
-<div class="bg-white p-6 rounded-lg shadow mb-6">
-
-
-  <!-- Two Column Layout -->
+<form method="get" asp-action="Index" class="bg-white p-6 rounded-lg shadow mb-6">
+  <!-- Filter Form -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-    <!-- Left Column -->
     <div class="space-y-6">
       <!-- Regional -->
       <div>
         <label class="block text-gray-700 text-sm font-medium mb-2">Regional:</label>
-        <select
+        <select name="regional"
           class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
-          <option>--Select Regional--</option>
-          <option>Kanwil Jakarta I</option>
-          <option>Kanwil Jakarta II</option>
-          <option>Kanwil Bandung</option>
-          <option>Kanwil Surabaya</option>
+          <option value="">--Select Regional--</option>
+          @foreach (var regional in (ViewData["Regionals"] as List<string> ?? Enumerable.Empty<string>()))
+          {
+            <option value="@regional">@regional</option>
+          }
         </select>
       </div>
 
       <!-- Cabang Induk -->
       <div>
         <label class="block text-gray-700 text-sm font-medium mb-2">Cabang Induk:</label>
-        <select
+        <select name="parentBranch"
           class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
-          <option>--Select Cabang Induk--</option>
-          <option>00701 - KCS JAKARTA HARMONI</option>
-          <option>00702 - KCS JAKARTA THAMRIN</option>
-          <option>00703 - KCS BANDUNG</option>
+          <option value="">--Select Cabang Induk--</option>
+          @foreach (var branch in (ViewData["ParentBranches"] as List<string> ?? Enumerable.Empty<string>()))
+          {
+            <option value="@branch">@branch</option>
+          }
         </select>
       </div>
 
       <!-- Outlet -->
       <div>
         <label class="block text-gray-700 text-sm font-medium mb-2">Outlet:</label>
-        <select
+        <select name="outlet"
           class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
-          <option>--Select Outlet--</option>
-          <option>00727 - KCPS Jakarta Tanah Abang</option>
-          <option>00728 - KCPS Jakarta Senen</option>
-          <option>00729 - KCPS Bandung</option>
+          <option value="">--Select Outlet--</option>
+          @foreach (var branch in (ViewData["Outlets"] as List<string> ?? Enumerable.Empty<string>()))
+          {
+            <option value="@branch">@branch</option>
+          }
         </select>
       </div>
     </div>
@@ -57,40 +54,41 @@
       <!-- Serial Number -->
       <div>
         <label class="block text-gray-700 text-sm font-medium mb-2">Serial Number:</label>
-        <input type="text" placeholder="Please enter your Serial Number"
+        <input type="text" name="serialNumber" placeholder="Please enter your Serial Number"
           class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
       </div>
 
-      <!-- Username -->
+      <!-- Created By -->
       <div>
-        <label class="block text-gray-700 text-sm font-medium mb-2">Username:</label>
-        <input type="text" placeholder="Please enter your Username"
+        <label class="block text-gray-700 text-sm font-medium mb-2">Created By:</label>
+        <input type="text" name="createdBy" placeholder="Please enter Created By" value="@ViewData["SelectedCreatedBy"]"
           class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
       </div>
 
       <!-- Status -->
       <div>
         <label class="block text-gray-700 text-sm font-medium mb-2">Status:</label>
-        <select
+        <select name="status"
           class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
-          <option>--Select Status Pinpad--</option>
-          <option>Ready To Use</option>
-          <option>Not Ready To Use</option>
-          <option>Maintenance</option>
-          <option>In Use</option>
+          <option value="">--Select Status Pinpad--</option>
+          @foreach (var branch in (ViewData["Status"] as List<string> ?? Enumerable.Empty<string>()))
+          {
+            <option value="@branch">@branch</option>
+          }
         </select>
       </div>
     </div>
   </div>
 
-  <!-- Search Button - Right Aligned -->
+  <!-- Search Button -->
   <div class="mt-8 flex justify-end">
-    <button
+    <button type="submit"
       class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
       <i class="fa fa-search mr-2"></i>Search
     </button>
   </div>
-</div>
+</form>
+
 
 <!-- Table Container -->
 <div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
@@ -111,19 +109,6 @@
           <option value="100">100</option>
         </select>
         <span class="text-sm text-gray-600">entries</span>
-      </div>
-
-      <!-- Search Box -->
-      <div class="flex items-center gap-2">
-        @* <label class="text-sm font-medium text-gray-700">Search:</label>
-        <input type="text" id="searchInput" placeholder="Search in all columns..."
-          class="border border-gray-300 rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[250px]">
-           *@
-        <form method="get" class="flex items-center">
-          <label class="text-sm text-gray-700 mr-3">Search:</label>
-          <input type="text" name="search" value="@ViewData["Search"]" placeholder="Search in all columns..."
-            class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
-        </form>
       </div>
     </div>
   </div>
