@@ -1,0 +1,181 @@
+@model IEnumerable<BtnNewPinpad.Models.Pinpad>
+
+<div class="p-4 md:p-6">
+  <div class="mb-4 text-sm px-4 sm:px-0">
+    <a href="#" class="text-teal-500 font-semibold hover:text-teal-600 transition-colors">Pinpad List</a> /
+    <span class="text-gray-500">Inquiry</span>
+  </div>
+
+  <!-- Table Controls -->
+  <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+    <!-- Show entries dropdown -->
+    <div class="flex items-center mb-3 md:mb-0">
+      <span class="text-sm text-gray-700 mr-3">Show:</span>
+      <select class="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-400 text-sm min-w-[80px]">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="all">All</option>
+      </select>
+      <span class="text-sm text-gray-700 ml-3">entries</span>
+    </div>
+
+    <!-- Search field -->
+    <form method="get" class="flex items-center">
+      <label class="text-sm text-gray-700 mr-3">Search:</label>
+      <input type="text" name="search" value="@ViewData["Search"]" placeholder="Search in all columns..."
+        class="border border-gray-300 px-4 py-2 rounded focus:ring-2 focus:ring-blue-400 text-sm min-w-[250px]">
+    </form>
+  </div>
+
+  <!-- Table Container -->
+  <div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden ">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-gray-700 text-sm">
+          <th class="px-4 py-3 font-semibold">Branch</th>
+          <th class="px-4 py-3 font-semibold">Serial Number</th>
+          <th class="px-4 py-3 font-semibold">Register Date</th>
+          <th class="px-4 py-3 font-semibold">Status</th>
+          <th class="px-4 py-3 font-semibold">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+
+        @foreach (var item in Model)
+        {
+          <tr class="hover:bg-gray-50 border-b border-gray-200">
+            <td class="px-4 py-3">@item.ParentBranch</td>
+            <td class="px-4 py-3 font-mono">@item.SerialNumber</td>
+            <td class="px-4 py-3">@item.RegistrationDate.ToString("dd-MM-yyyy")</td>
+            <td class="px-2 py-2">
+              @{
+                string statusClass = item.PinpadStatus switch
+                {
+                  "Ready To Use" => "bg-green-100 text-green-800",
+                  "Not Ready To Use" => "bg-gray-100 text-gray-800",
+                  "Maintenance - Tampering" => "bg-yellow-100 text-yellow-800",
+                  "Maintenance - Error Biometrik" => "bg-yellow-100 text-yellow-800",
+                  _ => "bg-gray-100 text-gray-800"
+                };
+              }
+              <span class="inline-block @statusClass px-3 py-1 rounded-full text-xs font-medium">
+                @item.PinpadStatus
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <button
+                class="bg-blue-500 text-white w-8 h-8 rounded hover:bg-blue-600 transition-colors flex items-center justify-center">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex flex-col md:flex-row justify-between items-center mt-4">
+    <div class="text-sm text-gray-600 mb-2 md:mb-0">
+      Showing 1 to 8 of 8 entries
+    </div>
+    <div class="flex space-x-1">
+      <!-- Previous button -->
+      <button
+        class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled>
+        Previous
+      </button>
+
+      <!-- Page numbers -->
+      <button
+        class="px-3 py-1 border rounded bg-blue-500 text-white border-blue-500 hover:bg-blue-600 text-sm transition-colors">1</button>
+
+      <!-- Next button -->
+      <button
+        class="px-3 py-1 border rounded hover:bg-gray-100 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled>
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.querySelector("tbody");
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+    const dropdown = document.querySelector("select");
+    const paginationContainer = document.querySelector(".flex.space-x-1");
+    const showingInfo = document.querySelector(".text-sm.text-gray-600");
+
+    let pageSize = parseInt(dropdown.value);
+    let currentPage = 1;
+
+    function renderTable() {
+      // hitung total halaman
+      let totalPages = pageSize === "all" ? 1 : Math.ceil(rows.length / pageSize);
+
+      // sembunyikan semua
+      rows.forEach(row => row.style.display = "none");
+
+      // tampilkan baris sesuai halaman
+      let start = (currentPage - 1) * pageSize;
+      let end = pageSize === "all" ? rows.length : start + pageSize;
+      rows.slice(start, end).forEach(row => row.style.display = "");
+
+      // update text "showing X to Y"
+      showingInfo.textContent = `Showing ${start + 1} to ${Math.min(end, rows.length)} of ${rows.length} entries`;
+
+      // render pagination number
+      paginationContainer.innerHTML = "";
+
+      // Previous button
+      let prevBtn = document.createElement("button");
+      prevBtn.textContent = "Previous";
+      prevBtn.className = "px-3 py-1 border rounded text-sm transition-colors";
+      if (currentPage === 1) {
+        prevBtn.classList.add("bg-gray-200", "text-gray-500", "cursor-not-allowed");
+        prevBtn.disabled = true;
+      } else {
+        prevBtn.classList.add("hover:bg-gray-100");
+        prevBtn.onclick = () => { currentPage--; renderTable(); };
+      }
+      paginationContainer.appendChild(prevBtn);
+
+      // Page numbers (sama seperti sebelumnya)
+      for (let i = 1; i <= totalPages; i++) {
+        let btn = document.createElement("button");
+        btn.textContent = i;
+        btn.className = `px-3 py-1 border rounded text-sm transition-colors ${i === currentPage ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600' : 'hover:bg-gray-100'}`;
+        btn.onclick = () => { currentPage = i; renderTable(); };
+        paginationContainer.appendChild(btn);
+      }
+
+      // Next button
+      let nextBtn = document.createElement("button");
+      nextBtn.textContent = "Next";
+      nextBtn.className = "px-3 py-1 border rounded text-sm transition-colors";
+      if (currentPage === totalPages) {
+        nextBtn.classList.add("bg-gray-200", "text-gray-500", "cursor-not-allowed");
+        nextBtn.disabled = true;
+      } else {
+        nextBtn.classList.add("hover:bg-gray-100");
+        nextBtn.onclick = () => { currentPage++; renderTable(); };
+      }
+      paginationContainer.appendChild(nextBtn);
+    }
+
+    dropdown.addEventListener("change", function () {
+      pageSize = this.value === "all" ? "all" : parseInt(this.value);
+      currentPage = 1;
+      renderTable();
+    });
+
+    renderTable();
+  });
+
+
+</script>

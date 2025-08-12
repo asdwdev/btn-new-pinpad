@@ -1,50 +1,194 @@
-﻿<!DOCTYPE html>
+﻿@* Pastikan file ini .cshtml dan _ViewImports.cshtml sudah ada *@
+@* _ViewImports.cshtml harus berisi: @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers *@
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BtnNewPinpad</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BtnNewPinpad.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"]Admin Logistik - DashboardApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BtnNewPinpad</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+<body class="bg-gray-50 min-h-screen overflow-x-hidden">
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden fixed top-4 left-4 z-50">
+        <button id="mobileMenuBtn" class="bg-purple-700 text-white p-2 rounded-md shadow-lg">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="flex flex-row w-full">
+        <!-- Sidebar -->
+        <aside id="sidebar"
+            class="fixed md:relative inset-y-0 left-0 z-40 w-64 md:w-72 bg-gradient-to-b from-purple-700 to-red-700 text-white transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out md:min-h-screen p-4 md:p-6 shadow-lg">
+            <div class="mb-6 md:mb-8 flex items-center gap-2 md:gap-3">
+                <img src="@Url.Content("~/images/Logo-BTN.png")" alt="logo" class="w-16 h-6 md:w-20 md:h-8">
+                <div>
+                    <h1 class="text-sm md:text-base font-bold">NEW PINPAD</h1>
+                    <p class="text-xs md:text-sm opacity-80">Admin</p>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+
+            <nav class="space-y-2 md:space-y-3">
+                <!-- Dashboard Link -->
+                <a class="flex items-center gap-3 p-2 md:p-3 rounded-lg hover:bg-white/10 transition-colors duration-200 text-sm md:text-base @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "bg-white/20 text-white" : "hover:bg-white/10")"
+                    asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fa fa-home text-sm md:text-base"></i> Dashboard
+                </a>
+
+                <!-- Monitoring Dropdown -->
+                <div>
+                    <button type="button" onclick="toggleDropdown()"
+                        class="flex items-center justify-between gap-3 w-full p-2 md:p-3 rounded-lg hover:bg-white/10 transition-colors duration-200 text-sm md:text-base @(ViewContext.RouteData.Values["Controller"]?.ToString() == "PinpadList" ? "bg-white/20 text-white" : "hover:bg-white/10")">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-chart-column"></i>
+                            Monitoring
+                        </div>
+                        <i id="arrowIcon"
+                            class="fa-solid fa-chevron-right transition-transform duration-300 text-xs md:text-sm"></i>
+                    </button>
+
+                    <!-- Dropdown Items -->
+                    <div id="dropdownMenu" class="hidden ml-4 md:ml-8 mt-1">
+                        <a asp-controller="PinpadList" asp-action="Index"
+                            class="block p-2 rounded-lg hover:bg-white/10 text-xs md:text-sm transition-colors duration-200 @(ViewContext.RouteData.Values["Controller"]?.ToString() == "PinpadList" ? "bg-white/20 text-white" : "")">
+                            Pinpad List
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pinpad Admin Logistik -->
+                <a class="flex items-center gap-3 p-2 md:p-3 rounded-lg hover:bg-white/10 transition-colors duration-200 text-sm md:text-base @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Pinpad" ? "bg-white/20 text-white" : "hover:bg-white/10")"
+                    asp-controller="Pinpad" asp-action="index">
+                    <i class="fa fa-cubes"></i> Pinpad (Admin Logistik)
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-3 md:p-6 lg:p-8 transition-all duration-300 min-w-0 md:ml-0">
+            <!-- Bar Atas -->
+            <div
+                class="flex flex-col sm:flex-row justify-between items-center mb-4 md:mb-6 lg:mb-8 w-full space-y-3 sm:space-y-0 sm:space-x-4">
+                <!-- Teks Info -->
+                <div class="text-xs sm:text-sm text-gray-600 text-center sm:text-left max-w-xs sm:max-w-none">
+                    ITPD-ICPNugroho - Admin Logistik - Cabang Testing ITPD
+                </div>
+
+                <!-- Dropdown User -->
+                <div class="relative inline-block text-left">
+                    <button id="userMenuButton" type="button"
+                        class="flex items-center space-x-2 text-xs sm:text-sm text-gray-500 hover:text-gray-700 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                        <i class="fa fa-user"></i>
+                        <span>User</span>
+                        <svg class="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div id="userMenuDropdown"
+                        class="hidden absolute right-0 mt-2 w-40 sm:w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+                        <div class="py-1">
+                            <a href="/Profile"
+                                class="block px-3 py-2 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                                Profile
+                            </a>
+                            <form method="post" action="/Account/Logout">
+                                <button type="submit"
+                                    class="w-full text-left px-3 py-2 text-xs sm:text-sm text-red-600 hover:bg-gray-100 transition-colors duration-200">
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Konten Utama -->
+            <div class="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BtnNewPinpad - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Overlay for mobile -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
+
+    <script>
+        const button = document.getElementById('userMenuButton');
+        const dropdown = document.getElementById('userMenuDropdown');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        // User dropdown functionality
+        button.addEventListener('click', () => {
+            dropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Mobile menu functionality
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+
+        // Close sidebar when clicking on a link (mobile)
+        document.querySelectorAll('aside a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                }
+            });
+        });
+
+        function toggleDropdown() {
+            const menu = document.getElementById('dropdownMenu');
+            const arrow = document.getElementById('arrowIcon');
+
+            // Toggle menu visibility
+            menu.classList.toggle('hidden');
+
+            // Rotate arrow icon: right (0deg) when closed, down (90deg) when open
+            if (menu.classList.contains('hidden')) {
+                arrow.style.transform = 'rotate(0deg)'; // Point right when closed
+            } else {
+                arrow.style.transform = 'rotate(90deg)'; // Point down when open
+            }
+        }
+
+        // Responsive adjustments
+        function handleResize() {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.add('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial call
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

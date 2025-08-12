@@ -1,8 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<div class="grid grid-cols-4 gap-6">
+    <!-- Total Device -->
+    <a href="@Url.Action("Index", "PinpadList")#tableSection"
+        class="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-5 rounded-lg shadow-lg flex flex-col justify-between hover:opacity-90 transition">
+        <div class="text-3xl font-bold">@ViewData["TotalDevice"]</div>
+        <div class="flex justify-between items-center mt-2">
+            <span>Total Device</span>
+            <i class="fa-solid fa-tablet-screen-button text-lg"></i>
+        </div>
+    </a>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <!-- Not Ready to Use -->
+    <a href="@Url.Action("Index", "PinpadList", new { status = "Not Ready To Use" })#tableSection"
+        class="bg-gradient-to-r from-pink-500 to-orange-500 text-white p-5 rounded-lg shadow-lg flex flex-col justify-between hover:opacity-90 transition">
+        <div class="text-3xl font-bold">@ViewData["NotReady"]</div>
+        <div class="flex justify-between items-center mt-2">
+            <span>Not Ready To Use</span>
+            <i class="fa-solid fa-lightbulb text-lg"></i>
+        </div>
+    </a>
+
+    <!-- Ready to Use -->
+    <a href="@Url.Action("Index", "PinpadList", new { status = "Ready To Use" })#tableSection"
+        class="bg-gradient-to-r from-green-500 to-blue-500 text-white p-5 rounded-lg shadow-lg flex flex-col justify-between hover:opacity-90 transition">
+        <div class="text-3xl font-bold">@ViewData["Ready"]</div>
+        <div class="flex justify-between items-center mt-2">
+            <span>Ready To Use</span>
+            <i class="fa-solid fa-chart-line text-lg"></i>
+        </div>
+    </a>
+
+    <!-- Active -->
+    <a href="@Url.Action("Index", "PinpadList", new { status = "Active" })#tableSection"
+        class="bg-gradient-to-r from-red-500 to-pink-500 text-white p-5 rounded-lg shadow-lg flex flex-col justify-between hover:opacity-90 transition">
+        <div class="text-3xl font-bold">@ViewData["Active"]</div>
+        <div class="flex justify-between items-center mt-2">
+            <span>Active</span>
+            <i class="fa-solid fa-folder text-lg"></i>
+        </div>
+    </a>
+
+    <!-- Inactive -->
+    <a href="@Url.Action("Index", "PinpadList", new { status = "Inactive" })#tableSection"
+        class="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-5 rounded-lg shadow-lg flex flex-col justify-between hover:opacity-90 transition">
+        <div class="text-3xl font-bold">@ViewData["Inactive"]</div>
+        <div class="flex justify-between items-center mt-2">
+            <span>Inactive</span>
+            <i class="fa-solid fa-folder text-lg"></i>
+        </div>
+    </a>
+
+    <!-- Maintenance -->
+    <a href="@Url.Action("Index", "PinpadList", new { status = "Maintenance" })#tableSection"
+        class="bg-gradient-to-r from-purple-700 to-pink-500 text-white p-5 rounded-lg shadow-lg flex flex-col justify-between hover:opacity-90 transition">
+        <div class="text-3xl font-bold">@ViewData["Maintenance"]</div>
+        <div class="flex justify-between items-center mt-2">
+            <span>Maintenance</span>
+            <i class="fa-solid fa-folder text-lg"></i>
+        </div>
+    </a>
 </div>
